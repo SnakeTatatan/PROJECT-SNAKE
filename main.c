@@ -15,8 +15,9 @@ int main()
     printf("**************************************\n");
     char choix[10];
     hidecursor();
-    while (choix != "Quitter")
+    while (strcmp(choix,"quitter") || strcmp(choix,"quitter") == 1 )
     {
+        printf("bonjouuuuuuur %s",choix);
         gotoxy(40,10);
         setColor(GREEN);
         printf("%c Jouer\n",254);
@@ -31,20 +32,21 @@ int main()
         printf("%c Quitter\n\n",254);
         setColor(WHITE);
         scanf("%s",choix);
-        if (choix == "Jouer")
+        if (choix == "Jouer" || "jouer")
         {
 
         }
-        else if (choix == "Options")
+        else if (choix == "Options" || "options" || "option")
         {
 
         }
-        else if (choix =="Scores")
+        else if (choix =="Scores" || "scores" || "score")
         {
 
         }
-        else if (choix == "Quitter")
+        else if (choix == "Quitter" || "quitter")
         {
+            printf("eazodjazf");
             break;
         }
         else
