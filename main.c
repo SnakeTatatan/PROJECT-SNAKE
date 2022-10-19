@@ -32,22 +32,17 @@ int main()
         printf("%c Quitter\n\n",254);
         setColor(WHITE);
         scanf("%s",choix);
-        if (choix == "Jouer" || "jouer")
+        if (strcmp(choix,"Options") strcmp(choix,"options"))
         {
 
         }
-        else if (choix == "Options" || "options" || "option")
+        else if (strcmp (choix,"Jouer") || strcmp(choix,"jouer"))
         {
 
         }
-        else if (choix =="Scores" || "scores" || "score")
+        else if (strcmp(choix,"scores") || strcmp(choix,"Scores"))
         {
 
-        }
-        else if (choix == "Quitter" || "quitter")
-        {
-            printf("eazodjazf");
-            break;
         }
         else
         {
