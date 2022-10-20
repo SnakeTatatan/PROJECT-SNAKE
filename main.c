@@ -41,7 +41,7 @@ int main()
         scanf("%s",choix);
         if (strcmp(choix,"Options")==0 || strcmp(choix,"options")==0)
         {
-
+             menu_options(ParamDefaut);
         }
         else if (strcmp (choix,"Jouer")==0 || strcmp(choix,"jouer")==0)
         {
