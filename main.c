@@ -7,6 +7,13 @@
 
 int main()
 {
+    /*initialisation des paramï¿½tres par dï¿½faut*/
+    ST_PARAM_JEU ParamDefaut;
+    ParamDefaut.couleur_snake=BLUE;
+    ParamDefaut.couleur_stade=YELLOW;
+    ParamDefaut.difficulte=1;
+    ParamDefaut.H_stade=5;
+    ParamDefaut.L_stade=5;
     setColor(RED);
     gotoxy(20,5);
     printf("*************************************************************************************\n");
@@ -51,7 +58,7 @@ int main()
         }
         else
         {
-            printf("Erreur de saisie, veuillez réessayer\n");
+            printf("Erreur de saisie, veuillez rï¿½essayer\n");
         }
     }
 
