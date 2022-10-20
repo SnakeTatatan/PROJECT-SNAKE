@@ -37,6 +37,12 @@
 		<Unit filename="Mes_SP.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="SP_Configuration.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SP_Configuration.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="SP_GESTION_JEU.c">
 			<Option compilerVar="CC" />
 		</Unit>

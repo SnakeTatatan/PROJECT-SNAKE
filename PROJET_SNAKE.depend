@@ -280,18 +280,27 @@
 	<windows.h>
 	<conio.h>
 
-1665557808 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\sp_gestion_jeu.c
+1666168650 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\sp_gestion_jeu.c
 	<stdio.h>
 	<time.h>
 	"myLib.h"
 	"SP_GESTION_JEU.h"
 
-1666160192 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\main.c
+1666171294 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\main.c
 	<stdio.h>
+	<stdlib.h>
 	"myLib.h"
 	"SP_GESTION_JEU.h"
-	"Mes_SP.h"
 	"MesTypes.h"
 
 1665566711 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\mes_sp.h
+
+1666172068 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\sp_configuration.c
+	<stdio.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+	"MesTypes.h"
+	"SP_Configuration.h"
+
+1666164383 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\sp_configuration.h
 
