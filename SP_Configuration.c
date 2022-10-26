@@ -7,14 +7,15 @@
 /* Codage tableau des scores */
 #define TAILLE_MAX 1000  /*tableau de taille 1000 */
 
-void scores (){
+void scores ()
+{
     FILE *tableau_des_scores =NULL ;
     char chaine [TAILLE_MAX] = "";
     tableau_des_scores = fopen ("Tableau_des_scores.txt","rt");
     if (tableau_des_scores != NULL)
     {
-        while (fgets(chaine,TAILLE_MAX,tableau_des_scores) != NULL)  /* on lit le fichier
-tant qu'on ne re�oit pas d'erreur (NULL)*/  /* On lit au max Taille_max caract�res
+        while (fgets(chaine,TAILLE_MAX,tableau_des_scores) != NULL)
+/* on lit le fichier tant qu'on ne re�oit pas d'erreur (NULL)*/  /* On lit au max Taille_max caracteres
 du fichier, on stocke le tout dans "chaine" */
         {
             printf("%s", chaine); /* on affiche la chaine */
@@ -31,82 +32,93 @@ du fichier, on stocke le tout dans "chaine" */
 /* INITIALISATION DU JEU */
 
 
-void Initialisation_jeu ()
+void Initialisation_jeu (ST_PARAM_JEU Param)
 {
     gotoxy(1,1);
-    int j ;
-    for (j=0;j<120*30;j++) /* initialise un terrain de 120*30 */
+    int j;
+    int k;
+    for (j=0;j<Param.H_stade;j++) /* initialise un terrain de L*H */
     {
-         printStadeElement();
+        for (k=0;k<Param.L_stade;k++)
+        {
+            setColor(Param.couleur_stade);
+            printStadeElement();
+        }
     }
-    int rd_x =random()%(120+1) ; int rd_y = random()%(30+1);
+    int rd_x =random()%(Param.L_stade+1) ; int rd_y = random()%(Param.H_stade+1);
     gotoxy(rd_x,rd_y);
+    setColor(LIGHTRED);
     printPomme();
-    rd_x =random()%(115) ; rd_y = random()%(30+1) ;
+    rd_x =random()%(Param.L_stade-5) ; rd_y = random()%(Param.H_stade+1) ;
     gotoxy(rd_x,rd_y);
+    setColor(Param.couleur_snake);
     printSnakeBody();
     printSnakeHead();
 }
 
+
+/*OPTIONS*/
 /*Sous programme menu options*/
 
-void menu_options(ST_PARAM_JEU ParamDef)
+void menu_options(ST_PARAM_JEU *Param)
 {
-    ST_PARAM_JEU Param=ParamDef;
     int choix1;
     int choix2;
     printf("**************\n Menu Options \n**************\n\n");
-    while(choix2!=2)
+    printf("Couleur Stade : %d\nCouleur Snake : %d\n", Param->couleur_stade, Param->couleur_snake);
+    printf("Difficulte: %d\nDimiensions stade: %d x %d\n\n", Param->difficulte, Param->L_stade, Param->H_stade);
+    printf("voulez vous modifiez les options de jeu?\n 1.Oui\n 2.Non\n\n");
+    scanf("%d",&choix1);
+    if(choix1==1)
     {
-        printf("Couleur Stade : %d\nCouleur Snake : %d\n", Param.couleur_stade, Param.couleur_snake);
-        printf("Difficulte: %d\nDimiensions stade: %dx%d\n\n", Param.difficulte, Param.H_stade, Param.L_stade);
-        printf("voulez vous modifiez les options de jeu?\n 1.Oui\n 2.Non\n\n");
-        scanf("%d",&choix1);
-        if(choix1==1)
+        printf("\n\n 1.Couleur Stade\n 2.Couleur Snake\n 3.Difficulte\n 4.Longueur stade\n 5.Hauteur Stade\n 6.Quitter\n\n");
+        scanf("%d", &choix2);
+        switch (choix2)
         {
-            printf("\n\n 1.Couleur Stade\n 2.Couleur Snake\n 3.Difficulte\n 4.Hauteur stade\n 5.Longueur Stade\n 6.Quitter\n\n");
-            scanf("%d", &choix2);
-            switch (choix2)
-            {
-                case 1:
-                    printf("\n modifiez l'option\n");
-                    scanf("%d", &Param.couleur_stade);
-                    break;
-                case 2:
-                    printf("\n modifiez l'option\n");
-                    scanf("%d", &Param.couleur_snake);
-                    break;
-                case 3:
-                    printf("\n modifiez l'option\n");
-                    scanf("%d", &Param.difficulte);
-                    break;
-                case 4 :
-                    printf("\n modifiez l'option\n");
-                    scanf("%d", &Param.H_stade);
-                    break;
-                case 5 :
-                    printf("\n modifiez l'option\n");
-                    scanf("%d", &Param.L_stade);
-                    break;
-                case 6 :
-                    SP_Titre();
-                    SP_menuppl();
-                    break;
-            }
+            case 1:
+                printf("\n modifiez la couleur du stade:\n 1.BLACK\n 2.BLUE\n 3.GREEN\n 4.CYAN\n 5.RED\n 6.MAGENTA\n 7.BROWN\n 8.GREY\n 9.DARKGREY\n 10.LIGHTBLUE\n 11.LIGHTGREEN\n 12.LIGHTCYAN\n 13.LIGHTRED\n 14.LIGHTMAGENTA\n 15.YELLOW\n 16.WHITE\n");
+                scanf("%d", &Param->couleur_stade);
+                menu_options(Param);
+                break;
+            case 2:
+                printf("\n modifiez la couleur du serpent:\n 1.BLACK\n 2.BLUE\n 3.GREEN\n 4.CYAN\n 5.RED\n 6.MAGENTA\n 7.BROWN\n 8.GREY\n 9.DARKGREY\n 10.LIGHTBLUE\n 11.LIGHTGREEN\n 12.LIGHTCYAN\n 13.LIGHTRED\n 14.LIGHTMAGENTA\n 15.YELLOW\n 16.WHITE\n");
+                scanf("%d", &Param->couleur_snake);
+                menu_options(Param);
+                break;
+            case 3:
+                printf("\n modifiez le niveau de difficulté: 1, 2 ou 3\n");
+                scanf("%d", &Param->difficulte);
+                menu_options(Param);
+                break;
+            case 4 :
+                printf("\n modifiez la longueur du stade:\n");
+                scanf("%d", &Param->L_stade);
+                menu_options(Param);
+                break;
+             case 5 :
+                printf("\n modifiez la hauteur du stade:\n");
+                scanf("%d", &Param->H_stade);
+                menu_options(Param);
+                break;
+            case 6 :
+                menu_options(Param);
+                break;
         }
-        else if (choix1==2)
-        {
-            printf("pas de modif des options, retour � l'acceuil");
-            SP_Titre();
-            SP_menuppl();
-        }
-        else
-        {
-            printf("erreur");
-        }
+    }
+    else if (choix1==2)
+    {
+        printf("pas de modif des options, retour a l'acceuil\n");
+    }
+    else
+    {
+        printf("erreur");
+        menu_options(Param);
     }
 }
 
+
+
+/*SP affichage*/
 void SP_Titre()
 {
     setColor(RED);

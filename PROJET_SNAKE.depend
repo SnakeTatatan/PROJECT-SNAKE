@@ -304,3 +304,43 @@
 
 1666164383 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\sp_configuration.h
 
+1666776172 source:c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\main.c
+	<stdio.h>
+	<stdlib.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+	"MesTypes.h"
+
+1666764640 c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\mylib.h
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1666764641 c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\sp_gestion_jeu.h
+
+1666764640 c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\mestypes.h
+
+1666764640 source:c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\mylib.c
+	"myLib.h"
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	<conio.h>
+
+1666776071 source:c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\sp_configuration.c
+	<stdio.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+	"MesTypes.h"
+	"SP_Configuration.h"
+
+1666764641 c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\sp_configuration.h
+
+1666764641 source:c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\sp_gestion_jeu.c
+	<stdio.h>
+	<time.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+

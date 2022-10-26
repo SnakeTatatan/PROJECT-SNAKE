@@ -6,3 +6,5 @@
 #endif // SP_CONFIGURATION_H_INCLUDED
 
 void scores ();
+
+void Initialisation_jeu (ST_PARAM_JEU Param);
