@@ -8,6 +8,9 @@
 int main()
 {
     /*initialisation des parametres par defaut*/
+    ST_SNAKE serpent;
+    ST_POMME pomme;
+    int dir;
     ST_PARAM_JEU Param;
     Param.couleur_snake=BLUE;
     Param.couleur_stade=WHITE;
@@ -26,9 +29,18 @@ int main()
         }
         else if (strcmp (choix,"Jouer")==0 || strcmp(choix,"jouer")==0)
         {
+            serpent.direction = DROITE;  /*au debut, le serpent ira a droite par default*/
             int infini = 1;
-            Initialisation_jeu(Param); /* charge le serpent, le terrain, la pomme */
+            Initialisation_jeu(Param,serpent); /* charge le serpent, le terrain, la pomme */
             while (infini==1)
+            {
+                dir = SP_Gestion_Clavier();
+                if (dir==-1)
+                {
+                    avancer(serpent.direction);
+                }
+                affichage_pos(&serpent,&pomme);
+                msleep(difficulte(Param));
             {
 
             }

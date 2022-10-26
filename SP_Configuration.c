@@ -31,8 +31,7 @@ du fichier, on stocke le tout dans "chaine" */
 
 /* INITIALISATION DU JEU */
 
-
-void Initialisation_jeu (ST_PARAM_JEU Param)
+void Initialisation_jeu (ST_PARAM_JEU Param, ST_SNAKE *p_serpent)
 {
     gotoxy(1,1);
     int j;
@@ -49,11 +48,18 @@ void Initialisation_jeu (ST_PARAM_JEU Param)
     gotoxy(rd_x,rd_y);
     setColor(LIGHTRED);
     printPomme();
-    rd_x =random()%(Param.L_stade-5) ; rd_y = random()%(Param.H_stade+1) ;
+    rd_x =random()%(Param.L_stade-5) ; rd_y = random()%(Param.H_stade+1) ;/* initialisation tete et queue du serpent */
+    p_serpent->pos[0].x  = rd_x ;
+    p_serpent->pos[0].y = rd_y ;
+    p_serpent->old_tail.x = rd_x;
+    p_serpent->old_tail.y = rd_y ;
+    p_serpent->tete.x = rd_x+1 ;
+    p_serpent->tete.y = rd_y +1 ;
+    p_serpent->taille=2;
     gotoxy(rd_x,rd_y);
-    setColor(Param.couleur_snake);
     printSnakeBody();
     printSnakeHead();
+    gotoxy(1,1);
 }
 
 
@@ -148,3 +154,61 @@ void SP_menuppl()
         setColor(WHITE);
 }
 
+int difficulte (ST_PARAM_JEU Param) /*renvoie la traduction de la difficulte en un temps en ms*/
+{
+    int tps = 0 ;
+    switch (Param.difficulte)
+    {
+    case 1 :
+        tps=3000;
+        break;
+
+    case 2 :
+        tps = 2000;
+        break;
+
+    case 3 :
+        tps = 1000;
+        break;
+
+    default :
+        break;
+
+    }
+    return tps;
+}
+
+void avancer(ST_SNAKE serpent)  /*fais avancer le serpent d'une case */
+{
+    switch(serpent.direction)
+                    {
+                    case HAUT :
+                        serpent.tete.y += 1 ;
+                        serpent.pos[0].y += 1 ;
+                        break;
+                    case BAS :
+                        serpent.tete.y += -1 ;
+                        serpent.pos[0].y += -1 ;
+                        break;
+                    case GAUCHE :
+                        serpent.tete.x += -1 ;
+                        serpent.pos[0].x += -1 ;
+                        break;
+                    case DROITE :
+                        serpent.tete.x += 1 ;
+                        serpent.pos[0].x += 1 ;
+                        break;
+                    default :
+                        serpent.tete.x += 1 ;
+                        serpent.pos[0].x += 1 ;
+                        break;
+                    }
+}
+
+void affichage_pos(ST_SNAKE serpent)
+{
+    gotoxy(serpent.tete.x,serpent.tete.y);
+    printf(" %d , %d   ",serpent.tete.x,serpent.tete.y);
+    printSnakeHead();
+
+}

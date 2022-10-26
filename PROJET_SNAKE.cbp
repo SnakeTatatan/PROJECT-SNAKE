@@ -31,12 +31,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Mes_SP.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Mes_SP.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="SP_Configuration.c">
 			<Option compilerVar="CC" />
 		</Unit>
