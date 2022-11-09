@@ -31,8 +31,11 @@ du fichier, on stocke le tout dans "chaine" */
 /* INITIALISATION DU JEU */
 
 
-void Initialisation_jeu (ST_PARAM_JEU Param_jeu)
+void Initialisation_jeu (ST_PARAM_JEU Param_jeu, ST_SNAKE *serpent, ST_POMME *pomme)
 {
+    serpent->taille=1;      /* taille du serpent à l'initialisation */
+    serpent->direction=DROITE;    /* on fais avancer le serpent lors de l'initialisation*/
+
     gotoxy(1,1);
     int h,i,j,k,l ;
     for (h=0 ; h<30 ; h++)
@@ -40,14 +43,13 @@ void Initialisation_jeu (ST_PARAM_JEU Param_jeu)
         printf("                                                                                                               \n");
     }
     gotoxy(1,1);
+    setBackgroundColor(Param_jeu.couleur_stade);
 
     for (k=0 ; k<Param_jeu.L_stade +2; k++)   /* mur haut du stade */
     {
         printStadeElement();
     }
     printf("\n");
-
-    setBackgroundColor(Param_jeu.couleur_stade);
 
     for (i=0;i<Param_jeu.H_stade;i++)       /* initialise un terrain de H*L */
     {
@@ -66,10 +68,17 @@ void Initialisation_jeu (ST_PARAM_JEU Param_jeu)
         printStadeElement();
     }
 
-    int rd_x =random()%(Param_jeu.L_stade) ; int rd_y = random()%(Param_jeu.H_stade);   /* initialisation du serpent au milieu et d'une pomme aléatoire */
+    int rd_x =random()%(Param_jeu.L_stade-1) ; int rd_y = random()%(Param_jeu.H_stade-1);   /* initialisation du serpent au milieu et d'une pomme aléatoire */
+    setColor(Param_jeu.couleur_snake);
     gotoxy(rd_x,rd_y);
+    pomme->pos.x=rd_x;
+    pomme->pos.y=rd_y;
     printPomme();
-    gotoxy(Param_jeu.L_stade/2,(Param_jeu.H_stade -1)/2);
+    gotoxy(floor(Param_jeu.L_stade/2),floor(Param_jeu.H_stade/2));
+    serpent->tete.x=floor(Param_jeu.L_stade/2)+1;
+    serpent->tete.y=floor(Param_jeu.H_stade/2);
+    serpent->pos[serpent->taille-1].x=floor(Param_jeu.L_stade/2);
+    serpent->pos[serpent->taille-1].y=floor(Param_jeu.H_stade/2);
     printSnakeBody();
     printSnakeHead();
 }

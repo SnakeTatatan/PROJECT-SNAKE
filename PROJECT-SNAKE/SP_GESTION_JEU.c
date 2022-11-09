@@ -2,6 +2,8 @@
 #include <time.h>
 #include "myLib.h"
 #include "SP_GESTION_JEU.h"
+#include "mesTypes.h"
+#include "SP_Configuration.h"
 
 /*===================================================================================
 / Nom Sémantique : FONCTION SP_Gestion_Clavier
@@ -35,6 +37,22 @@ int SP_Gestion_Clavier(){
     else {dir=-1;}
     return dir;
 }
+
+
+
+/* MOUVEMENT DU SERPENT */
+
+void affiche_serpent(ST_SNAKE serpent)
+{
+    gotoxy(serpent.pos[serpent.taille-1].x,serpent.pos[serpent.taille-1].y);
+    /*printf("%d , %d",serpent.pos[serpent.taille-1].x,serpent.pos[serpent.taille-1].y );*/
+    printf(" ");
+    gotoxy(serpent.old_tail.x,serpent.old_tail.y);
+    printSnakeBody();
+    gotoxy(serpent.tete.x,serpent.tete.y);
+    printSnakeHead();
+}
+
 
 
 
