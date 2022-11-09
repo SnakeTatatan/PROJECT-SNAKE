@@ -33,6 +33,7 @@ du fichier, on stocke le tout dans "chaine" */
 
 void Initialisation_jeu (ST_PARAM_JEU Param_jeu)
 {
+    ST_SNAKE serpent;
     gotoxy(1,1);
     int h,i,j,k,l ;
     for (h=0 ; h<30 ; h++)
@@ -69,7 +70,11 @@ void Initialisation_jeu (ST_PARAM_JEU Param_jeu)
     setColor(Param_jeu.couleur_snake);
     gotoxy(rd_x,rd_y);
     printPomme();
-    gotoxy(Param_jeu.L_stade/2,(Param_jeu.H_stade -1)/2);
+    gotoxy(floor(Param_jeu.L_stade/2),floor(Param_jeu.H_stade/2));
+
+    serpent.tete.x=floor(Param_jeu.L_stade/2)+1;
+    serpent.tete.y=floor(Param_jeu.H_stade/2);
+
     printSnakeBody();
     printSnakeHead();
 }

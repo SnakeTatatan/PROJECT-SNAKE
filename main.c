@@ -7,42 +7,56 @@
 
 int main()
 {
-    /*initialisation des parametres par defaut*/
-    ST_SNAKE serpent;
-    ST_POMME pomme;
-    int dir;
-    ST_PARAM_JEU Param;
-    Param.couleur_snake=BLUE;
-    Param.couleur_stade=WHITE;
-    Param.difficulte=1;
-    Param.H_stade=30;
-    Param.L_stade=120;
-    SP_Titre();
+    /*initialisation des param�tres par d�faut*/
+    ST_PARAM_JEU ParamDefaut;
+    ParamDefaut.couleur_snake=BLUE;
+    ParamDefaut.couleur_stade=YELLOW;
+    ParamDefaut.difficulte=1;
+    ParamDefaut.H_stade=25;
+    ParamDefaut.L_stade=100;
+    setColor(RED);
+    gotoxy(20,5);
+    printf("*************************************************************************************\n");
+    gotoxy(50,6);
+    printf("BIENVENUE DANS SNAKE\n");
+    gotoxy(20,7);
+    printf("*************************************************************************************\n");
     char choix[10];
+    hidecursor();
     while (strcmp(choix,"quitter") || strcmp(choix,"quitter") == 1 )
     {
-        SP_menuppl();
+        gotoxy(55,10);
+        setColor(GREEN);
+        printf("%c Jouer\n",254);
+        setColor(YELLOW);
+        gotoxy(55,12);
+        printf("%c Options",254);
+        setColor(BLUE);
+        gotoxy(55,14);
+        printf("%c Scores",254);
+        gotoxy(55,16);
+        setColor(RED);
+        printf("%c Quitter\n\n",254);
+        setColor(WHITE);
         scanf("%s",choix);
         if (strcmp(choix,"Options")==0 || strcmp(choix,"options")==0)
         {
-            menu_options(&Param);
+             menu_options(ParamDefaut);
         }
         else if (strcmp (choix,"Jouer")==0 || strcmp(choix,"jouer")==0)
         {
-            serpent.direction = DROITE;  /*au debut, le serpent ira a droite par default*/
             int infini = 1;
-            Initialisation_jeu(Param,serpent); /* charge le serpent, le terrain, la pomme */
+            ST_SNAKE serpent;
+            Initialisation_jeu(ParamDefaut); /* charge le serpent, le terrain, la pomme */
+            serpent.taille=2;      /* taille du serpent à l'initialisation */
             while (infini==1)
             {
-                dir = SP_Gestion_Clavier();
-                if (dir==-1)
+                serpent.direction=SP_Gestion_Clavier();
+                if (serpent.direction == -1)
                 {
-                    avancer(serpent.direction);
-                }
-                affichage_pos(&serpent,&pomme);
-                msleep(difficulte(Param));
-            {
 
+                }
+                msleep(1000);
             }
         }
         else if (strcmp(choix,"scores")==0 || strcmp(choix,"Scores")==0)
@@ -51,9 +65,10 @@ int main()
         }
         else
         {
-            printf("Erreur de saisie, veuillez reessayer\n");
+            printf("Erreur de saisie, veuillez r�essayer\n");
         }
     }
+
     return 0;
 }
 
