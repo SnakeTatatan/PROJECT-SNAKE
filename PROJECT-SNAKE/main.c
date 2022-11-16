@@ -3,60 +3,48 @@
 #include "myLib.h"
 #include "SP_GESTION_JEU.h"
 #include "MesTypes.h"
+#include "SP_Configuration.h"
 
 
 int main()
 {
-    /*initialisation des param�tres par d�faut*/
+    /*initialisation des param�tres par defaut*/
     ST_PARAM_JEU ParamDefaut;
-               ST_POMME pomme;         /* initialisation des coord de la pomme*/
-            ST_SNAKE serpent;
+    ST_POMME pomme;         /* initialisation des coord de la pomme*/
+    ST_SNAKE serpent;
     ParamDefaut.couleur_snake=BLUE;
     ParamDefaut.couleur_stade=YELLOW;
     ParamDefaut.difficulte=1;
     ParamDefaut.H_stade=25;
     ParamDefaut.L_stade=100;
-    setColor(RED);
-    gotoxy(20,5);
-    printf("*************************************************************************************\n");
-    gotoxy(50,6);
-    printf("BIENVENUE DANS SNAKE\n");
-    gotoxy(20,7);
-    printf("*************************************************************************************\n");
+
     char choix[10];
-    hidecursor();
-    while (strcmp(choix,"quitter") || strcmp(choix,"quitter") == 1 )
+    while (strcmp(choix,"quitter") /*|| strcmp(choix,"quitter") == 1*/ )
     {
-        gotoxy(55,10);
-        setColor(GREEN);
-        printf("%c Jouer\n",254);
-        setColor(YELLOW);
-        gotoxy(55,12);
-        printf("%c Options",254);
-        setColor(BLUE);
-        gotoxy(55,14);
-        printf("%c Scores",254);
-        gotoxy(55,16);
-        setColor(RED);
-        printf("%c Quitter\n\n",254);
-        setColor(WHITE);
+        setBackgroundColor(BLACK);
+        cls();
+        SP_Titre();
+        SP_menuppl();
         scanf("%s",choix);
         if (strcmp(choix,"Options")==0 || strcmp(choix,"options")==0)
         {
-             menu_options(ParamDefaut);
+             menu_options(&ParamDefaut);
         }
         else if (strcmp (choix,"Jouer")==0 || strcmp(choix,"jouer")==0)
         {
             int infini = 1;
-
             Initialisation_jeu(ParamDefaut,&serpent,&pomme); /* charge le serpent, le terrain, la pomme */
-
             int anc_dir;
             while (infini==1)
             {
+
                 if (serpent.direction==DROITE || serpent.direction==GAUCHE || serpent.direction==BAS || serpent.direction==HAUT)
                 {
                         anc_dir=serpent.direction;      /* permet d'enregistrer la derniere direction du serpent*/
+                }
+                else if (pomme.pos.x==serpent.tete.x & pomme.pos.y==serpent.tete.y)
+                {
+                    SP_MangePomme(&serpent, &pomme, ParamDefaut);
                 }
                 serpent.direction=SP_Gestion_Clavier();
                 serpent.old_tail=serpent.tete;
@@ -68,7 +56,6 @@ int main()
                         {
                             case DROITE :
                                 serpent.tete.x++;
-                                printf("alller");
                                 break;
                             case GAUCHE :
                                 serpent.tete.x--;
@@ -80,22 +67,52 @@ int main()
                                 serpent.tete.y--;
                                 break;
                         }
+                        break;
 
                     case HAUT :
-                        serpent.tete.y++;
+                        if (serpent.pos[0].y==serpent.tete.y - 1)
+                        {
+                            serpent.direction=-1;
+                            anc_dir=BAS;
+                            serpent.tete.y++;
+                            break;
+                        }
+                        serpent.tete.y--;
                         break;
                     case BAS :
+                         if (serpent.pos[0].y==serpent.tete.y +1)
+                        {
+                            serpent.direction=-1;
+                            anc_dir=HAUT;
+                            serpent.tete.y--;
+                            break;
+                        }
                         serpent.tete.y++;
                         break;
                     case DROITE :
+                        if (serpent.pos[0].x==serpent.tete.x +1)
+                        {
+                            serpent.direction=-1;
+                            anc_dir=GAUCHE;
+                            serpent.tete.x--;
+                            break;
+                        }
                         serpent.tete.x++;
                         break;
                     case GAUCHE :
+                         if (serpent.pos[0].x==serpent.tete.x - 1)
+                        {
+                            serpent.direction=-1;
+                            anc_dir=DROITE;
+                            serpent.tete.x++;
+                            break;
+                        }
                         serpent.tete.x--;
                         break;
                 }
-                affiche_serpent(serpent);
-                msleep(3000);
+                affiche_serpent(&serpent);
+                infini=echec(serpent,ParamDefaut);
+                msleep(300);
             }
         }
         else if (strcmp(choix,"scores")==0 || strcmp(choix,"Scores")==0)
@@ -104,11 +121,9 @@ int main()
         }
         else
         {
-            printf("Erreur de saisie, veuillez r�essayer\n");
+            printf("Erreur de saisie, veuillez reessayer\n");
         }
     }
 
     return 0;
 }
-
-

@@ -4,6 +4,7 @@
 
 
 int SP_Gestion_Clavier();
-void affiche_serpent(ST_SNAKE serpent);
+void affiche_serpent(ST_SNAKE *);
+int echec(ST_SNAKE , ST_PARAM_JEU);
 
 #endif // SP_JEU_H_INCLUDED
