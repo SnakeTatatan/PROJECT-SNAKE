@@ -54,24 +54,25 @@ void SP_MangePomme(ST_SNAKE *serpent, ST_POMME *pomme)
         printPomme;
         serpent->taille++;
     }
+}
 
 
 /* MOUVEMENT DU SERPENT */
 
-void affiche_serpent(ST_SNAKE serpent)
+void affiche_serpent(ST_SNAKE *serpent)
 {
     int i;
-    i=serpent.taille;
-    gotoxy(serpent.pos[i].x,serpent.pos[i].y);
+    i=serpent->taille;
+    gotoxy(serpent->pos[i].x,serpent->pos[i].y);
     printf(" ");
-    for (i=serpent.taille-1 ; i>0 ; i--)
+    for (i=serpent->taille-1 ; i>0 ; i--)
     {
-        gotoxy(serpent.pos[i].x,serpent.pos[i].y);
-        printSnakeBody();
+        serpent->pos[i]=serpent->pos[i-1];
     }
-    gotoxy(serpent.old_tail.x,serpent.old_tail.y);
+    serpent->pos[0]=serpent->old_tail;
+    gotoxy(serpent->pos[0].x,serpent->pos[0].y);
     printSnakeBody();
-    gotoxy(serpent.pos[0].x, serpent.pos[0].y);
+    gotoxy(serpent->tete.x, serpent->tete.y);
     printSnakeHead();
 }
 
