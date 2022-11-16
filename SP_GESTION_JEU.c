@@ -8,9 +8,7 @@
 
 /*===================================================================================
 / Nom Sémantique : FONCTION SP_Gestion_Clavier
-
 / Sémantique : Gère la détection des évènements clavier sur les touches de direction
-
 / Paramètres :
 / direction (OUT) - entier : Contient la direction sollicitée par l'utilisateur
 / DROITE = 0 , GAUCHE = 1 , BAS = 2 , HAUT = 3 et -1 SINON
@@ -40,20 +38,6 @@ int SP_Gestion_Clavier()
     return dir;
 }
 
-/* MOUVEMENT DU SERPENT */
-
-void affiche_serpent(ST_SNAKE serpent)
-{
-    gotoxy(serpent.pos[serpent.taille-1].x,serpent.pos[serpent.taille-1].y);
-    /*printf("%d , %d",serpent.pos[serpent.taille-1].x,serpent.pos[serpent.taille-1].y );*/
-    printf(" ");
-    gotoxy(serpent.old_tail.x,serpent.old_tail.y);
-    printSnakeBody();
-    gotoxy(serpent.tete.x,serpent.tete.y);
-    printSnakeHead();
-}
-
-
 
 /*sous programme pomme mangée*/
 void SP_MangePomme(ST_SNAKE *serpent, ST_POMME *pomme)
@@ -70,5 +54,27 @@ void SP_MangePomme(ST_SNAKE *serpent, ST_POMME *pomme)
         printPomme;
         serpent->taille++;
     }
+
+
+/* MOUVEMENT DU SERPENT */
+
+void affiche_serpent(ST_SNAKE serpent)
+{
+    int i;
+    i=serpent.taille;
+    gotoxy(serpent.pos[i].x,serpent.pos[i].y);
+    printf(" ");
+    for (i=serpent.taille-1 ; i>0 ; i--)
+    {
+        gotoxy(serpent.pos[i].x,serpent.pos[i].y);
+        printSnakeBody();
+    }
+    gotoxy(serpent.old_tail.x,serpent.old_tail.y);
+    printSnakeBody();
+    gotoxy(serpent.pos[0].x, serpent.pos[0].y);
+    printSnakeHead();
 }
+
+
+
 
