@@ -9,6 +9,7 @@
 int main()
 {
     /*initialisation des param�tres par defaut*/
+    ST_JOUEUR joueur;
     ST_PARAM_JEU ParamDefaut;
     ST_POMME pomme;         /* initialisation des coord de la pomme*/
     ST_SNAKE serpent;
@@ -23,6 +24,7 @@ int main()
     {
         setBackgroundColor(BLACK);
         cls();
+        param_joueur (joueur);
         SP_Titre();
         SP_menuppl();
         scanf("%s",choix);
@@ -112,7 +114,7 @@ int main()
                 }
                 affiche_serpent(&serpent);
                 infini=echec(serpent,ParamDefaut);
-                msleep(300);
+                msleep(100);
             }
         }
         else if (strcmp(choix,"scores")==0 || strcmp(choix,"Scores")==0)

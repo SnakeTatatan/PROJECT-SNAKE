@@ -88,11 +88,11 @@ int echec (ST_SNAKE serpent, ST_PARAM_JEU Param_jeu)
             }
 
     }
-    if (serpent.tete.x>=Param_jeu.L_stade || serpent.tete.x==0)
+    if (serpent.tete.x>Param_jeu.L_stade || serpent.tete.x==1)
     {
         return 0;
     }
-    else if (serpent.tete.y >= Param_jeu.H_stade || serpent.tete.y==0)
+    else if (serpent.tete.y > Param_jeu.H_stade || serpent.tete.y==2)
     {
         return 0;
     }

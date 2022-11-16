@@ -241,3 +241,16 @@ void affichage_pos(ST_SNAKE serpent)
     printf(" %d , %d   ",serpent.tete.x,serpent.tete.y);
     printSnakeHead();
 }
+
+
+/* Parametre joueur */
+
+void param_joueur(ST_JOUEUR jeu)
+{
+     cls();
+     SP_Titre();
+     setColor(YELLOW);
+     printf(" \n \n Votre pseudo :");
+     scanf("%c",&jeu.nom);
+     cls();
+}
