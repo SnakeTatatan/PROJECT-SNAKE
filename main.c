@@ -3,60 +3,79 @@
 #include "myLib.h"
 #include "SP_GESTION_JEU.h"
 #include "MesTypes.h"
+#include "SP_Configuration.h"
 
 
 int main()
 {
-    /*initialisation des param�tres par d�faut*/
+    /*initialisation des param�tres par defaut*/
     ST_PARAM_JEU ParamDefaut;
+    ST_POMME pomme;         /* initialisation des coord de la pomme*/
+    ST_SNAKE serpent;
     ParamDefaut.couleur_snake=BLUE;
     ParamDefaut.couleur_stade=YELLOW;
     ParamDefaut.difficulte=1;
     ParamDefaut.H_stade=25;
     ParamDefaut.L_stade=100;
-    setColor(RED);
-    gotoxy(20,5);
-    printf("*************************************************************************************\n");
-    gotoxy(50,6);
-    printf("BIENVENUE DANS SNAKE\n");
-    gotoxy(20,7);
-    printf("*************************************************************************************\n");
+    SP_Titre();
     char choix[10];
-    hidecursor();
-    while (strcmp(choix,"quitter") || strcmp(choix,"quitter") == 1 )
+    while (strcmp(choix,"quitter") /*|| strcmp(choix,"quitter") == 1*/ )
     {
-        gotoxy(55,10);
-        setColor(GREEN);
-        printf("%c Jouer\n",254);
-        setColor(YELLOW);
-        gotoxy(55,12);
-        printf("%c Options",254);
-        setColor(BLUE);
-        gotoxy(55,14);
-        printf("%c Scores",254);
-        gotoxy(55,16);
-        setColor(RED);
-        printf("%c Quitter\n\n",254);
-        setColor(WHITE);
+        SP_menuppl();
         scanf("%s",choix);
         if (strcmp(choix,"Options")==0 || strcmp(choix,"options")==0)
         {
-             menu_options(ParamDefaut);
+             menu_options(&ParamDefaut);
         }
         else if (strcmp (choix,"Jouer")==0 || strcmp(choix,"jouer")==0)
         {
             int infini = 1;
-            ST_SNAKE serpent;
-            Initialisation_jeu(ParamDefaut); /* charge le serpent, le terrain, la pomme */
-            serpent.taille=2;      /* taille du serpent à l'initialisation */
+            Initialisation_jeu(ParamDefaut,&serpent,&pomme); /* charge le serpent, le terrain, la pomme */
+            int anc_dir;
             while (infini==1)
             {
-                serpent.direction=SP_Gestion_Clavier();
-                if (serpent.direction == -1)
+                if (serpent.direction==DROITE || serpent.direction==GAUCHE || serpent.direction==BAS || serpent.direction==HAUT)
                 {
-
+                        anc_dir=serpent.direction;      /* permet d'enregistrer la derniere direction du serpent*/
                 }
-                msleep(1000);
+                serpent.direction=SP_Gestion_Clavier();
+                serpent.old_tail=serpent.tete;
+                switch(serpent.direction)
+                {
+                    case -1 :
+
+                        switch (anc_dir)
+                        {
+                            case DROITE :
+                                serpent.tete.x++;
+                                printf("alller");
+                                break;
+                            case GAUCHE :
+                                serpent.tete.x--;
+                                break;
+                            case BAS :
+                                serpent.tete.y++;
+                                break;
+                            case HAUT :
+                                serpent.tete.y--;
+                                break;
+                        }
+
+                    case HAUT :
+                        serpent.tete.y++;
+                        break;
+                    case BAS :
+                        serpent.tete.y++;
+                        break;
+                    case DROITE :
+                        serpent.tete.x++;
+                        break;
+                    case GAUCHE :
+                        serpent.tete.x--;
+                        break;
+                }
+                affiche_serpent(serpent);
+                msleep(3000);
             }
         }
         else if (strcmp(choix,"scores")==0 || strcmp(choix,"Scores")==0)
@@ -71,5 +90,3 @@ int main()
 
     return 0;
 }
-
-

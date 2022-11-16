@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <time.h>
 #include "myLib.h"
-#include "SP_GESTION_JEU.h"
+
+#include "MesTypes.h"
+#include "SP_Configuration.h"
+/*#include "SP_GESTION_JEU.h"*/
 
 /*===================================================================================
 / Nom Sémantique : FONCTION SP_Gestion_Clavier
@@ -16,7 +19,8 @@
 / ====================================================================================
 / Test : le chiffre renvoyé correspond à la direction appuyée
 / ====================================================================================*/
-int SP_Gestion_Clavier(){
+int SP_Gestion_Clavier()
+{
     char direction ;
     int dir;
 
@@ -36,5 +40,35 @@ int SP_Gestion_Clavier(){
     return dir;
 }
 
+/* MOUVEMENT DU SERPENT */
 
+void affiche_serpent(ST_SNAKE serpent)
+{
+    gotoxy(serpent.pos[serpent.taille-1].x,serpent.pos[serpent.taille-1].y);
+    /*printf("%d , %d",serpent.pos[serpent.taille-1].x,serpent.pos[serpent.taille-1].y );*/
+    printf(" ");
+    gotoxy(serpent.old_tail.x,serpent.old_tail.y);
+    printSnakeBody();
+    gotoxy(serpent.tete.x,serpent.tete.y);
+    printSnakeHead();
+}
+
+
+
+/*sous programme pomme mangée*/
+void SP_MangePomme(ST_SNAKE *serpent, ST_POMME *pomme)
+{
+    if(pomme->pos.x==serpent->tete.x & pomme->pos.y==serpent->tete.y)
+    {
+        int rdx=random();
+        int rdy=random();
+        gotoxy(pomme->pos.x, pomme->pos.y);
+        printf(" ");
+        pomme->pos.x=rdx;
+        pomme->pos.y=rdy;
+        gotoxy(pomme->pos.x, pomme->pos.y);
+        printPomme;
+        serpent->taille++;
+    }
+}
 
