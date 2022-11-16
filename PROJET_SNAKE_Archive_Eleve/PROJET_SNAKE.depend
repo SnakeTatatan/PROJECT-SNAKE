@@ -1,0 +1,350 @@
+# depslib dependency file v1.0
+1588251031 source:c:\users\picota\documents\be_info\projet_snake\mylib.c
+	"myLib.h"
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1605695914 
+
+1588580317 c:\users\picota\documents\be_info\projet_snake\mylib.h
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1599741257 source:c:\users\picota\documents\be_info\projet_snake\sp_affichage.c
+	<stdio.h>
+	"myVariable.h"
+	"myLib.h"
+	"SP_AFFICHAGE.h"
+
+1605693352 AGE.h"
+
+1605274675 c:\users\picota\documents\be_info\projet_snake\myvariable.h
+
+1588594131 c:\users\picota\documents\be_info\projet_snake\sp_affichage.h
+
+1598885211 source:c:\users\picota\documents\be_info\projet_snake\sp_init_param.c
+	<stdio.h>
+	"myVariable.h"
+	"myLib.h"
+	"SP_INIT_PARAM.h"
+
+1605692254 ARAM.h"
+
+1588579267 c:\users\picota\documents\be_info\projet_snake\sp_init_param.h
+
+1598888674 source:c:\users\picota\documents\be_info\projet_snake\sp_jeu.c
+	<stdio.h>
+	<time.h>
+	"myVariable.h"
+	"myLib.h"
+	"SP_AFFICHAGE.h"
+	"SP_JEU.h"
+
+1598949307 source:c:\users\picota\documents\be_info\projet_snake\main.c
+	<stdio.h>
+	"myLib.h"
+	"myVariable.h"
+	"SP_INIT_PARAM.h"
+	"SP_AFFICHAGE.h"
+	"SP_JEU.h"
+
+1588592765 c:\users\picota\documents\be_info\projet_snake\sp_jeu.h
+
+1605694570 source:c:\users\picota\documents\be_info\projet_snake_archive\main.c
+	<stdio.h>
+	"myLib.h"
+	"myVariable.h"
+	"SP_INIT_PARAM.h"
+	"SP_AFFICHAGE.h"
+	"SP_JEU.h"
+
+1605543883 c:\users\picota\documents\be_info\projet_snake_archive\mylib.h
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1605693436 c:\users\picota\documents\be_info\projet_snake_archive\myvariable.h
+
+1588579267 c:\users\picota\documents\be_info\projet_snake_archive\sp_init_param.h
+
+1605694512 c:\users\picota\documents\be_info\projet_snake_archive\sp_affichage.h
+
+1588592765 c:\users\picota\documents\be_info\projet_snake_archive\sp_jeu.h
+
+1605692254 source:c:\users\picota\documents\be_info\projet_snake_archive\sp_init_param.c
+	<stdio.h>
+	"myVariable.h"
+	"myLib.h"
+	"SP_INIT_PARAM.h"
+
+1605693352 source:c:\users\picota\documents\be_info\projet_snake_archive\sp_affichage.c
+	<stdio.h>
+	"myVariable.h"
+	"myLib.h"
+	"SP_AFFICHAGE.h"
+
+1605693446 source:c:\users\picota\documents\be_info\projet_snake_archive\sp_jeu.c
+	<stdio.h>
+	<time.h>
+	"myVariable.h"
+	"myLib.h"
+	"SP_AFFICHAGE.h"
+	"SP_JEU.h"
+
+1605543872 source:c:\users\picota\documents\be_info\projet_snake_archive\mylib.c
+	"myLib.h"
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	<conio.h>
+
+1605695907 source:c:\users\picota\documents\be_info\projet_snake_archive_eleve\mylib.c
+	"myLib.h"
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	<conio.h>
+
+1605695932 c:\users\picota\documents\be_info\projet_snake_archive_eleve\mylib.h
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1605695914 source:c:\users\picota\documents\be_info\projet_snake_archive_eleve\sp_jeu.c
+	<stdio.h>
+	<time.h>
+	"myLib.h"
+	"SP_JEU.h"
+
+1605696116 c:\users\picota\documents\be_info\projet_snake_archive_eleve\sp_jeu.h
+
+1605696842 source:c:\users\picota\documents\be_info\projet_snake_archive_eleve\main.c
+	<stdio.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+
+1633963824 N_JEU.h"
+
+1605696651 c:\users\picota\documents\be_info\projet_snake_archive_eleve\sp_gestion_jeu.h
+
+1605696859 source:c:\users\picota\documents\be_info\projet_snake_archive_eleve\sp_gestion_jeu.c
+	<stdio.h>
+	<time.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+
+1665479193 source:z:\_n7\1a\[cours-be]info_inge\snake\projet_snake_archive_eleve\mylib.c
+	"myLib.h"
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	<conio.h>
+
+1665479118 z:\_n7\1a\[cours-be]info_inge\snake\projet_snake_archive_eleve\mylib.h
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1605698064 source:z:\_n7\1a\[cours-be]info_inge\snake\projet_snake_archive_eleve\sp_gestion_jeu.c
+	<stdio.h>
+	<time.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+
+1605696652 z:\_n7\1a\[cours-be]info_inge\snake\projet_snake_archive_eleve\sp_gestion_jeu.h
+
+1665064105 source:z:\_n7\1a\[cours-be]info_inge\snake\projet_snake_archive_eleve\main.c
+	<stdio.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+
+1633964278 source:/home/picota/Documents/_n7/1A/[Cours-BE]Info_Inge/SNAKE/PROJET_SNAKE_Archive_Eleve/myLib.c
+	"myLib.h"
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	<conio.h>
+
+1605692334 /home/picota/Documents/_n7/1A/[Cours-BE]Info_Inge/SNAKE/PROJET_SNAKE_Archive_Eleve/myLib.h
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1605694464 source:/home/picota/Documents/_n7/1A/[Cours-BE]Info_Inge/SNAKE/PROJET_SNAKE_Archive_Eleve/SP_GESTION_JEU.c
+	<stdio.h>
+	<time.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+
+1605693052 /home/picota/Documents/_n7/1A/[Cours-BE]Info_Inge/SNAKE/PROJET_SNAKE_Archive_Eleve/SP_GESTION_JEU.h
+
+1665557808 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\main.c
+	<stdio.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+
+1665557808 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\mylib.h
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1665557808 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\sp_gestion_jeu.h
+
+1665557808 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\mylib.c
+	"myLib.h"
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	<conio.h>
+
+1665557808 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\sp_gestion_jeu.c
+	<stdio.h>
+	<time.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+
+1665760642 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\main.c
+	<stdio.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+	"Mes_SP.h"
+	"MesTypes.h"
+
+1665557808 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\mylib.h
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1665557808 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\sp_gestion_jeu.h
+
+1665557808 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\mylib.c
+	"myLib.h"
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	<conio.h>
+
+1665557808 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\sp_gestion_jeu.c
+	<stdio.h>
+	<time.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+
+1665567066 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\mes_sp.c
+	"SP_GESTION_JEU.h"
+	"myLib.h"
+	<stdio.h>
+	"mesTypes.h"
+
+1665567138 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\mestypes.h
+
+1665566711 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\mes_sp.h
+
+1665567066 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\mes_sp.c
+	"SP_GESTION_JEU.h"
+	"myLib.h"
+	<stdio.h>
+	"mesTypes.h"
+
+1665557808 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\sp_gestion_jeu.h
+
+1665557808 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\mylib.h
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1665567138 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\mestypes.h
+
+1665557808 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\mylib.c
+	"myLib.h"
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	<conio.h>
+
+1666168650 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\sp_gestion_jeu.c
+	<stdio.h>
+	<time.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+
+1666171294 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\main.c
+	<stdio.h>
+	<stdlib.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+	"MesTypes.h"
+
+1665566711 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\mes_sp.h
+
+1666275261 source:c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\sp_configuration.c
+	<stdio.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+	"MesTypes.h"
+	"SP_Configuration.h"
+
+1666164383 c:\users\33602\desktop\n7\programmation en langage c\be snake\projet_snake_archive_eleve\project-snake\sp_configuration.h
+
+1667986450 source:c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\main.c
+	<stdio.h>
+	<stdlib.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+	"MesTypes.h"
+	"SP_Configuration.h"
+
+1666761040 c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\mylib.h
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1668429062 c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\sp_gestion_jeu.h
+	"MesTypes.h"
+	"SP_Configuration.h"
+	"SP_GESTION_JEU.h"
+
+1667990553 c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\mestypes.h
+
+1666761040 source:c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\mylib.c
+	"myLib.h"
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	<conio.h>
+
+1668429013 source:c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\sp_configuration.c
+	<stdio.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+	"MesTypes.h"
+
+1668429750 c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\sp_configuration.h
+
+1668429460 source:c:\users\utilisateur\desktop\etudes\n7\n7 algo\projet_snake_archive_eleve\sp_gestion_jeu.c
+	<stdio.h>
+	<time.h>
+	"myLib.h"
+	"MesTypes.h"
+	"SP_Configuration.h"
+
