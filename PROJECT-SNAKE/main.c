@@ -18,8 +18,8 @@ int main()
     ParamDefaut.difficulte=1;
     ParamDefaut.H_stade=25;
     ParamDefaut.L_stade=100;
-
     char choix[10];
+
     while (strcmp(choix,"quitter") /*|| strcmp(choix,"quitter") == 1*/ )
     {
         setBackgroundColor(BLACK);
@@ -28,25 +28,23 @@ int main()
         SP_Titre();
         SP_menuppl();
         scanf("%s",choix);
+
         if (strcmp(choix,"Options")==0 || strcmp(choix,"options")==0)
         {
              menu_options(&ParamDefaut);
         }
+
         else if (strcmp (choix,"Jouer")==0 || strcmp(choix,"jouer")==0)
         {
             int infini = 1;
             Initialisation_jeu(ParamDefaut,&serpent,&pomme); /* charge le serpent, le terrain, la pomme */
             int anc_dir;
+
             while (infini==1)
             {
-
                 if (serpent.direction==DROITE || serpent.direction==GAUCHE || serpent.direction==BAS || serpent.direction==HAUT)
                 {
                         anc_dir=serpent.direction;      /* permet d'enregistrer la derniere direction du serpent*/
-                }
-                else if (pomme.pos.x==serpent.tete.x & pomme.pos.y==serpent.tete.y)
-                {
-                    SP_MangePomme(&serpent, &pomme, ParamDefaut);
                 }
                 serpent.direction=SP_Gestion_Clavier();
                 serpent.old_tail=serpent.tete;
@@ -112,9 +110,14 @@ int main()
                         serpent.tete.x--;
                         break;
                 }
+                if (pomme.pos.x==serpent.tete.x && pomme.pos.y==serpent.tete.y)
+                {
+                    SP_MangePomme(&serpent, &pomme, ParamDefaut);
+                }
                 affiche_serpent(&serpent);
                 infini=echec(serpent,ParamDefaut);
-                msleep(100);
+                msleep(500);
+                printf("h");
             }
         }
         else if (strcmp(choix,"scores")==0 || strcmp(choix,"Scores")==0)

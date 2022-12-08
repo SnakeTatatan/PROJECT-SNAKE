@@ -41,37 +41,55 @@ int SP_Gestion_Clavier()
 /*sous programme pomme mangée*/
 void SP_MangePomme(ST_SNAKE *serpent, ST_POMME *pomme, ST_PARAM_JEU param)
 {
-    if(pomme->pos.x==serpent->tete.x & pomme->pos.y==serpent->tete.y)
-    {
         int rdx=random()%(param.L_stade-5);
         int rdy=random()%(param.H_stade-5);
         setColor(param.couleur_snake);
         gotoxy(rdx,rdy);
         pomme->pos.x=rdx;
         pomme->pos.y=rdy;
-        printPomme;
+        printPomme();
         serpent->taille++;
-    }
+        serpent->pos[serpent->taille]=serpent->pos[serpent->taille-1];
 }
 
 
 /* MOUVEMENT DU SERPENT */
 
-void affiche_serpent(ST_SNAKE *serpent)
+void affiche_serpent(ST_SNAKE *serpent, ST_POMME *pomme)
 {
     int i;
+    int j;
     i=serpent->taille;
-    gotoxy(serpent->pos[i].x,serpent->pos[i].y);
-    printf(" ");
-    for (i=serpent->taille-1 ; i>0 ; i--)
+    if (pomme->pos.x==serpent->tete.x && pomme->pos.y==serpent->tete.y)
     {
-        serpent->pos[i]=serpent->pos[i-1];
+        printf("passssse");
+        for (i=serpent->taille-1; i>0 ; i--)
+        {
+            serpent->pos[i]=serpent->pos[i-1];
+        }
+        serpent->pos[0]=serpent->old_tail;
+        gotoxy(serpent->pos[0].x,serpent->pos[0].y);
+        printSnakeBody();
+        gotoxy(serpent->tete.x, serpent->tete.y);
+        printSnakeHead();
     }
-    serpent->pos[0]=serpent->old_tail;
-    gotoxy(serpent->pos[0].x,serpent->pos[0].y);
-    printSnakeBody();
-    gotoxy(serpent->tete.x, serpent->tete.y);
-    printSnakeHead();
+    else
+    {
+        printf("passssse");
+        gotoxy(serpent->pos[i-1].x,serpent->pos[i-1].y);
+        printf(" ");
+        for (j=serpent->taille-1; j>0 ; j--)
+        {
+            serpent->pos[j]=serpent->pos[j-1];
+        }
+        serpent->pos[0]=serpent->old_tail;
+        gotoxy(serpent->pos[0].x,serpent->pos[0].y);
+        printSnakeBody();
+        gotoxy(serpent->tete.x, serpent->tete.y);
+        printSnakeHead();
+    }
+
+
 }
 
 
@@ -80,20 +98,23 @@ void affiche_serpent(ST_SNAKE *serpent)
 int echec (ST_SNAKE serpent, ST_PARAM_JEU Param_jeu)
 {
     int i;
-    for (i=0 ; i=serpent.taille ; i--)
+    for (i=0 ; i<=serpent.taille-1 ; i++)
     {
         if (serpent.tete.x==serpent.pos[i].x && serpent.tete.y==serpent.pos[i].y)
             {
+                printf("ccccc");
                 return 0;
             }
 
     }
     if (serpent.tete.x>Param_jeu.L_stade || serpent.tete.x==1)
     {
+        printf("aaaaa");
         return 0;
     }
     else if (serpent.tete.y > Param_jeu.H_stade || serpent.tete.y==2)
     {
+        printf("bbbb");
         return 0;
     }
     return 1;

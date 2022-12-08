@@ -33,7 +33,7 @@ du fichier, on stocke le tout dans "chaine" */
 
 void Initialisation_jeu (ST_PARAM_JEU Param_jeu, ST_SNAKE *serpent, ST_POMME *pomme)
 {
-    serpent->taille=0;      /* taille du serpent à l'initialisation */
+    serpent->taille=5;      /* taille du serpent à l'initialisation */
     serpent->direction=DROITE;    /* on fais avancer le serpent lors de l'initialisation*/
 
     gotoxy(1,1);
@@ -74,11 +74,23 @@ void Initialisation_jeu (ST_PARAM_JEU Param_jeu, ST_SNAKE *serpent, ST_POMME *po
     pomme->pos.x=rd_x;
     pomme->pos.y=rd_y;
     printPomme();
-    gotoxy(floor(Param_jeu.L_stade/2),floor(Param_jeu.H_stade/2));
+    gotoxy(floor(Param_jeu.L_stade/2-4),floor(Param_jeu.H_stade/2));
     serpent->tete.x=floor(Param_jeu.L_stade/2)+1;
     serpent->tete.y=floor(Param_jeu.H_stade/2);
-    serpent->pos[serpent->taille].x=floor(Param_jeu.L_stade/2);
-    serpent->pos[serpent->taille].y=floor(Param_jeu.H_stade/2);
+    serpent->pos[4].x=floor(Param_jeu.L_stade/2)-4;
+    serpent->pos[4].y=floor(Param_jeu.H_stade/2);
+    serpent->pos[3].x=floor(Param_jeu.L_stade/2)-3;
+    serpent->pos[3].y=floor(Param_jeu.H_stade/2);
+    serpent->pos[2].x=floor(Param_jeu.L_stade/2)-2;
+    serpent->pos[2].y=floor(Param_jeu.H_stade/2);
+    serpent->pos[1].x=floor(Param_jeu.L_stade/2)-1;
+    serpent->pos[1].y=floor(Param_jeu.H_stade/2);
+    serpent->pos[0].x=floor(Param_jeu.L_stade/2);
+    serpent->pos[0].y=floor(Param_jeu.H_stade/2);
+    printSnakeBody();
+    printSnakeBody();
+    printSnakeBody();
+    printSnakeBody();
     printSnakeBody();
     printSnakeHead();
 }
