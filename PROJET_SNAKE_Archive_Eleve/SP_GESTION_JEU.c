@@ -19,7 +19,8 @@
 / ====================================================================================
 / Test : le chiffre renvoyé correspond à la direction appuyée
 / ====================================================================================*/
-int SP_Gestion_Clavier(){
+int SP_Gestion_Clavier()
+{
     char direction ;
     int dir;
 
@@ -39,35 +40,51 @@ int SP_Gestion_Clavier(){
     return dir;
 }
 
-/* MOUVEMENT DU SERPENT */
+/* MOUVEMENT DU SERPENT*/
 
-void affiche_serpent(ST_SNAKE serpent)
+void affiche_serpent(ST_SNAKE *serpent, ST_POMME pomme)
 {
-    gotoxy(serpent.pos[serpent.taille-1].x,serpent.pos[serpent.taille-1].y);
-    /*printf("%d , %d",serpent.pos[serpent.taille-1].x,serpent.pos[serpent.taille-1].y );*/
-    printf(" ");
-    gotoxy(serpent.old_tail.x,serpent.old_tail.y);
-    printSnakeBody();
-    gotoxy(serpent.tete.x,serpent.tete.y);
-    printSnakeHead();
-}
-
-
-
-/*sous programme pomme mangée*/
-void SP_MangePomme(ST_SNAKE *serpent, ST_POMME *pomme)
-{
-    if(pomme->pos.x==serpent->tete.x & pomme->pos.y==serpent->tete.y)
+    int i;
+    int j;
+    i=serpent->taille;
+    if (pomme.pos.x==serpent->tete.x && pomme.pos.y==serpent->tete.y)
     {
-        int rdx=random();
-        int rdy=random();
-        gotoxy(pomme->pos.x, pomme->pos.y);
+        for (i=serpent->taille-1; i>0 ; i--)
+        {
+            serpent->pos[i]=serpent->pos[i-1];
+        }
+        serpent->pos[0]=serpent->old_tail;
+        gotoxy(serpent->pos[0].x,serpent->pos[0].y);
+        printSnakeBody();
+        gotoxy(serpent->tete.x, serpent->tete.y);
+        printSnakeHead();
+    }
+    else
+    {
+        gotoxy(serpent->pos[i-1].x,serpent->pos[i-1].y);
         printf(" ");
-        pomme->pos.x=rdx;
-        pomme->pos.y=rdy;
-        gotoxy(pomme->pos.x, pomme->pos.y);
-        printPomme;
-        serpent->taille++;
+        for (j=serpent->taille-1; j>0 ; j--)
+        {
+            serpent->pos[j]=serpent->pos[j-1];
+        }
+        serpent->pos[0]=serpent->old_tail;
+        gotoxy(serpent->pos[0].x,serpent->pos[0].y);
+        printSnakeBody();
+        gotoxy(serpent->tete.x, serpent->tete.y);
+        printSnakeHead();
     }
 }
 
+
+/*sous programme pomme mangée*/
+void SP_MangePomme(ST_SNAKE *serpent, ST_POMME *pomme, ST_PARAM_JEU param)
+{
+    int rdx=random()%(param.L_stade-2);
+    int rdy=random()%(param.H_stade-2);
+    setColor(param.couleur_snake);
+    gotoxy(rdx,rdy);
+    pomme->pos.x=rdx;
+    pomme->pos.y=rdy;
+    printPomme();
+    serpent->taille++;
+}
