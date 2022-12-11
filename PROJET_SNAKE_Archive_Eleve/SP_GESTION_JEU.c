@@ -1,24 +1,10 @@
 #include <stdio.h>
 #include <time.h>
 #include "myLib.h"
-
 #include "MesTypes.h"
 #include "SP_Configuration.h"
-/*#include "SP_GESTION_JEU.h"*/
 
-/*===================================================================================
-/ Nom Sémantique : FONCTION SP_Gestion_Clavier
-
-/ Sémantique : Gère la détection des évènements clavier sur les touches de direction
-
-/ Paramètres :
-/ direction (OUT) - entier : Contient la direction sollicitée par l'utilisateur
-/ DROITE = 0 , GAUCHE = 1 , BAS = 2 , HAUT = 3 et -1 SINON
-/ Pré-condition : AUCUNE
-/ Post conditions : la direction vaut -1,0,1,2,3
-/ ====================================================================================
-/ Test : le chiffre renvoyé correspond à la direction appuyée
-/ ====================================================================================*/
+/* SP de gestion des fleches directionnelles*/
 int SP_Gestion_Clavier()
 {
     char direction ;
@@ -40,8 +26,7 @@ int SP_Gestion_Clavier()
     return dir;
 }
 
-/* MOUVEMENT DU SERPENT*/
-
+/* SP de mise en mouvement du serpent*/
 void affiche_serpent(ST_SNAKE *serpent, ST_POMME pomme)
 {
     int i;
@@ -49,6 +34,7 @@ void affiche_serpent(ST_SNAKE *serpent, ST_POMME pomme)
     i=serpent->taille;
     if (pomme.pos.x==serpent->tete.x && pomme.pos.y==serpent->tete.y)
     {
+        /*gere l'affichage du serpent dans le cas particulier ou celui ci mange une pomme*/
         for (i=serpent->taille-1; i>0 ; i--)
         {
             serpent->pos[i]=serpent->pos[i-1];
@@ -61,30 +47,41 @@ void affiche_serpent(ST_SNAKE *serpent, ST_POMME pomme)
     }
     else
     {
+        /*affiche le mouvement du serpent dans le cas general*/
         gotoxy(serpent->pos[i-1].x,serpent->pos[i-1].y);
-        printf(" ");
+        printf(" "); /*efface le dernier element de la queue du serpent*/
         for (j=serpent->taille-1; j>0 ; j--)
         {
-            serpent->pos[j]=serpent->pos[j-1];
+            serpent->pos[j]=serpent->pos[j-1]; /*chaque element de la queue prend l'ancienne position de l'element suivant*/
         }
-        serpent->pos[0]=serpent->old_tail;
+        serpent->pos[0]=serpent->old_tail; /*le premier element de la queue prend l'ancienne position de la tete*/
         gotoxy(serpent->pos[0].x,serpent->pos[0].y);
-        printSnakeBody();
+        printSnakeBody(); /*affiche un element de la queue à l'ancienne position de la tete*/
         gotoxy(serpent->tete.x, serpent->tete.y);
-        printSnakeHead();
+        printSnakeHead();/* affiche la tete a sa nouvelle position*/
     }
 }
 
 
-/*sous programme pomme mangée*/
+/*SP pomme mangee*/
 void SP_MangePomme(ST_SNAKE *serpent, ST_POMME *pomme, ST_PARAM_JEU param)
 {
-    int rdx=random()%(param.L_stade-2);
-    int rdy=random()%(param.H_stade-2);
+    int a=1;
+    /*nouvelles coordonees de la pomme, a l'interieur du stade*/
+    int rdx=random()%(param.L_stade-2)+1;
+    int rdy=random()%(param.H_stade-2)+1;
+    for(a==1; a==serpent->taille; a++)
+    {
+        /*cas ou la pomme apparait sur le serpent -> elle doit s'afficher autre part*/
+        if (rdx==serpent->pos[a].x && rdy==serpent->pos[a].y || rdx==1 || rdy==1)
+        {
+            SP_MangePomme(&serpent, &pomme, param);
+        }
+    }
     setColor(param.couleur_snake);
     gotoxy(rdx,rdy);
     pomme->pos.x=rdx;
     pomme->pos.y=rdy;
-    printPomme();
-    serpent->taille++;
+    printPomme(); /*affiche la nouvelle pomme a une position valide*/
+    serpent->taille++; /* incrementation de la taille du serpent*/
 }

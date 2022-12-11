@@ -2,31 +2,29 @@
 #include "myLib.h"
 #include "SP_GESTION_JEU.h"
 #include "MesTypes.h"
-/*#include "SP_Configuration.h"*/
 
 /* Codage tableau des scores */
 #define TAILLE_MAX 1000  /*tableau de taille 1000 */
 
+/*SP de lecture du fichier score*/
 void lecture_scores (FILE *scores)
 {
-    scores=fopen("scores.txt","rt");
+    scores=fopen("scores.txt","rt"); /*ouvre le fichier en mode lecture*/
     char c;
     while((c=fgetc(scores))!=EOF)
     {
-        printf("%c",c);
+        printf("%c",c); /*affiche le contenu du fichier*/
     }
-    fclose(scores);
+    fclose(scores); /*ferme le fichier*/
 }
 
 
 
 /* INITIALISATION DU JEU */
-
-
 void Initialisation_jeu (ST_PARAM_JEU Param_jeu, ST_SNAKE *serpent, ST_POMME *pomme)
 {
     serpent->taille=5;      /* taille du serpent à l'initialisation */
-    serpent->direction=DROITE;    /* on fais avancer le serpent lors de l'initialisation*/
+    serpent->direction=DROITE;    /* on fais avancer le serpent vers la droite lors de l'initialisation*/
     gotoxy(1,1);
     int p;
     int h,i,j,k,l ;
@@ -36,12 +34,12 @@ void Initialisation_jeu (ST_PARAM_JEU Param_jeu, ST_SNAKE *serpent, ST_POMME *po
     }
     gotoxy(1,1);
     setBackgroundColor(Param_jeu.couleur_stade);
-    for (k=0 ; k<Param_jeu.L_stade +2; k++)   /* mur haut du stade */
+    for (k=0 ; k<Param_jeu.L_stade +2; k++)   /* affiche le mur du haut du stade */
     {
         printStadeElement();
     }
     printf("\n");
-    for (i=0;i<Param_jeu.H_stade;i++)       /* initialise un terrain de H*L */
+    for (i=0;i<Param_jeu.H_stade;i++)       /* affiche les murs des cotes du stade*/
     {
          printStadeElement();
          for (j=0; j<Param_jeu.L_stade; j++)
@@ -51,11 +49,11 @@ void Initialisation_jeu (ST_PARAM_JEU Param_jeu, ST_SNAKE *serpent, ST_POMME *po
          printStadeElement();
          printf("\n");
     }
-    for (l=0 ; l<Param_jeu.L_stade+2; l++)       /* mur bas du stade */
+    for (l=0 ; l<Param_jeu.L_stade+2; l++)       /* affiche le mur bas du stade */
     {
         printStadeElement();
     }
-    int rd_x =random()%(Param_jeu.L_stade-5) ; int rd_y = random()%(Param_jeu.H_stade-5);   /* initialisation du serpent au milieu et d'une pomme aléatoire */
+    int rd_x =random()%(Param_jeu.L_stade-2)+1 ; int rd_y = random()%(Param_jeu.H_stade-2)+1;   /* initialisation du serpent au milieu du stade et d'une pomme à un endroit aléatoire */
     setColor(Param_jeu.couleur_snake);
     gotoxy(rd_x,rd_y);
     pomme->pos.x=rd_x;
@@ -67,28 +65,26 @@ void Initialisation_jeu (ST_PARAM_JEU Param_jeu, ST_SNAKE *serpent, ST_POMME *po
     printSnakeHead();
 }
 
-
-
-/*OPTIONS*/
 /*Sous programme menu options*/
-
 void menu_options(ST_PARAM_JEU *Param)
 {
     int choix1;
     int choix2;
     printf("**************\n Menu Options \n**************\n\n");
     printf("Couleur Stade : %d\nCouleur Snake : %d\n", &Param->couleur_stade, &Param->couleur_snake);
-    printf("Difficulte: %d\nDimiensions stade: %d x %d\n\n", &Param->difficulte, &Param->L_stade, &Param->H_stade);
+    printf("Difficulte: %d\nDimiensions stade: %d x %d\n\n", &Param->difficulte, &Param->L_stade, &Param->H_stade); /*affiche les parametres actuels*/
     printf("voulez vous modifiez les options de jeu?\n 1.Oui\n 2.Non\n\n");
-    scanf("%d",&choix1);
+    scanf("%d",&choix1); /* le joueur choisis si il veut ou non modifier les options de jeu*/
     if(choix1==1)
     {
         while(choix2!=6)
         {
+            /*affiche les parametres pouvant etre modifies*/
             printf("\n\n 1.Couleur Stade\n 2.Couleur Snake\n 3.Difficulte\n 4.Longueur stade\n 5.Hauteur Stade\n 6.Quitter\n\n");
             scanf("%d", &choix2);
             switch (choix2)
             {
+                /*pour chaque choix, les valeurs pouvant être prises par le paramètre sont affichées et une doit être selectionnée par le joueur*/
                 case 1:
                     printf("\n modifiez la couleur du stade:\n 0.BLACK\n 1.BLUE\n 2.GREEN\n 3.CYAN\n 4.RED\n 5.MAGENTA\n 6.BROWN\n 7.GREY\n 8.DARKGREY\n 9.LIGHTBLUE\n 10.LIGHTGREEN\n 11.LIGHTCYAN\n 12.LIGHTRED\n 13.LIGHTMAGENTA\n 14.YELLOW\n 15.WHITE\n");
                     scanf("%d", &Param->couleur_stade);
@@ -99,7 +95,7 @@ void menu_options(ST_PARAM_JEU *Param)
                     break;
                 case 3:
                     printf("\n modifiez le niveau de difficulté: facile : 200\n intermediaire: 100\n dificile: 50\n");
-                    scanf("%d*100", &Param->difficulte);
+                    scanf("%d", &Param->difficulte);
                     break;
                 case 4 :
                     printf("\n modifiez la longueur du stade:\n");
@@ -118,10 +114,12 @@ void menu_options(ST_PARAM_JEU *Param)
         }
 
     }
+    /*retour au menu principal*/
     else if (choix1==2)
     {
         printf("pas de modif des options, retour a l'acceuil\n");
     }
+    /*erreur de saisie*/
     else if (choix1!=1 & choix1!=2)
     {
         printf("erreur");
@@ -131,7 +129,7 @@ void menu_options(ST_PARAM_JEU *Param)
 
 
 
-/*SP affichage*/
+/*SP affichage du titre du jeu*/
 void SP_Titre()
 {
     setColor(RED);
@@ -144,6 +142,7 @@ void SP_Titre()
     hidecursor();
 }
 
+/*SP affichage du menu principal*/
 void SP_menuppl()
 {
         gotoxy(55,10);
@@ -161,24 +160,23 @@ void SP_menuppl()
         setColor(WHITE);
 }
 
-/*renvoie la traduction de la difficulte en un temps en ms*/
+/*renvoie la traduction de la difficulte en un temps de pause en ms*/
 int difficulte (ST_PARAM_JEU Param)
 {
     int tps = 0 ;
     switch (Param.difficulte)
     {
     case 1 :
-        tps=3000;
+        tps=200;
         break;
 
     case 2 :
-        tps = 2000;
+        tps = 100;
         break;
 
     case 3 :
-        tps = 1000;
+        tps = 50;
         break;
-
     default :
         break;
 
@@ -187,7 +185,7 @@ int difficulte (ST_PARAM_JEU Param)
 }
 
 /*SP avancer tete serpent*/
-void avancer_tete(ST_SNAKE serpent)  /*fais avancer le serpent d'une case */
+void avancer_tete(ST_SNAKE serpent)  /*fais avancer la tete du serpent d'une case selon la direction choisie*/
 {
     switch(serpent.direction)
     {
@@ -214,18 +212,10 @@ void avancer_tete(ST_SNAKE serpent)  /*fais avancer le serpent d'une case */
     }
 }
 
-/*SP_position serpent : affiche la tete du serpent à la bonne position*/
-void affichage_pos(ST_SNAKE serpent)
-{
-    gotoxy(serpent.tete.x,serpent.tete.y);
-   /* printf(" %d , %d   ",serpent.tete.x,serpent.tete.y);*/
-    printSnakeHead();
-}
-
 /* Parametre joueur */
-
 void param_joueur(ST_JOUEUR jeu)
 {
+    /*demande et enregistre le nom du joueur en debut de partie*/
      cls();
      SP_Titre();
      setColor(YELLOW);
@@ -234,9 +224,10 @@ void param_joueur(ST_JOUEUR jeu)
      cls();
 }
 
-/*sp game over*/
+/*sp fin de jeu*/
 void game_over(int score)
 {
+    /*affiche une page de fin de jeu ainsi que le score de la partie*/
     setBackgroundColor(BLACK),
     cls();
     setColor(WHITE);
@@ -253,12 +244,12 @@ void game_over(int score)
 }
 
 /* SP enregistre scores*/
-
-/*void ecriture_score(FILE *f, ST_JOUEUR joueur, int score)
+void ecriture_score(FILE *f, ST_JOUEUR joueur, int score)
 {
+    /*ouvre le fichier texte contenant les scores et ecrit un nouveau score et le nom du joueur correspondant*/
     f=fopen("scores.txt"," wt ");
     fprintf(f,"Nom\t Score\n\n") ;
     fprintf(f,"%s %i\n",joueur.nom, score);
     fclose(f);
 }
-*/
+

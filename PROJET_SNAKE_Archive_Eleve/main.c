@@ -8,60 +8,63 @@
 
 int main()
 {
-    /*initialisation des param�tres par defaut*/
+    /*initialisation des parametres par defaut*/
     FILE *fichier_scores;
     ST_PARAM_JEU ParamDefaut;
     ST_JOUEUR joueur;
-    ST_POMME pomme;         /* initialisation des coord de la pomme*/
+    ST_POMME pomme;
     ST_SNAKE serpent;
     ParamDefaut.couleur_snake=GREEN;
     ParamDefaut.couleur_stade=YELLOW;
-    ParamDefaut.difficulte=1;
     ParamDefaut.H_stade=25;
     ParamDefaut.L_stade=100;
     ParamDefaut.difficulte=100;
     int score=0;
     char choix[10];
     int i=1;
-    while (strcmp(choix,"quitter") /*|| strcmp(choix,"quitter") == 1*/ )
+    /*le programme est actif tant que le joueur ne selectionne pas "quitter"*/
+    while (strcmp(choix,"quitter"))
     {
+        /* Affichage du menu principal*/
         setBackgroundColor(BLACK);
         cls();
         param_joueur(joueur);
         SP_Titre();
         SP_menuppl();
         scanf("%s",choix);
+        /* choix des actions à faire pour le joueur*/
         if (strcmp(choix,"Options")==0 || strcmp(choix,"options")==0)
         {
-             menu_options(&ParamDefaut);
+            /*lancement du menu option*/
+            menu_options(&ParamDefaut);
         }
         else if (strcmp (choix,"Jouer")==0 || strcmp(choix,"jouer")==0)
         {
+            /*lancement du menu jeu*/
             int infini = 1;
-            Initialisation_jeu(ParamDefaut,&serpent,&pomme); /* charge le serpent, le terrain, la pomme */
+            Initialisation_jeu(ParamDefaut,&serpent,&pomme); /*Affiche le stade, le serpent et la pomme*/
             int anc_dir;
             while (infini==1)
             {
                 if (serpent.direction==DROITE || serpent.direction==GAUCHE || serpent.direction==BAS || serpent.direction==HAUT)
                 {
-                        anc_dir=serpent.direction;      /* permet d'enregistrer la derniere direction du serpent*/
+                        anc_dir=serpent.direction;      /* enregistre la derniere direction du serpent*/
                 }
-                serpent.direction=SP_Gestion_Clavier();
+                serpent.direction=SP_Gestion_Clavier(); /*gestion de la direction*/
                 serpent.old_tail=serpent.tete;
-                if(serpent.tete.x==pomme.pos.x & serpent.tete.y==pomme.pos.y) /*si le serpent mange la pomme*/
+                if(serpent.tete.x==pomme.pos.x & serpent.tete.y==pomme.pos.y)  /*cas ou le serpent mange la pomme*/
                 {
                     score=score+1;
-                    printf("%d", score);
                     SP_MangePomme(&serpent, &pomme, ParamDefaut);
                 }
-                else if(serpent.tete.x==1 || serpent.tete.y==1 || serpent.tete.x==ParamDefaut.L_stade+2 || serpent.tete.y==ParamDefaut.H_stade+2) /* si le serpent atteint les limites du stade*/
+                else if(serpent.tete.x==1 || serpent.tete.y==1 || serpent.tete.x==ParamDefaut.L_stade+2 || serpent.tete.y==ParamDefaut.H_stade+2) /* cas ou le serpent atteint les limites du stade*/
                 {
                     game_over(score);
                     /*ecriture_score(fichier_scores);*/
                     score=0;
                     break;
                 }
-                for(i==1; i==serpent.taille; i++) /*serpent se mange la queue*/
+                for(i==1; i==serpent.taille; i++) /* cas ou le serpent mange sa queue*/
                 {
                     if(serpent.tete.x==serpent.pos[i].x && serpent.tete.y==serpent.pos[i].y)
                     {
@@ -71,6 +74,7 @@ int main()
                         break;
                     }
                 }
+                /*gestion de la direction de la tete du serpent avec les fleches du clavier*/
                 switch(serpent.direction)
                 {
                     case -1 :
@@ -90,7 +94,6 @@ int main()
                                 break;
                         }
                         break;
-
                     case HAUT :
                         if (serpent.pos[0].y==serpent.tete.y -1)
                         {
@@ -132,18 +135,21 @@ int main()
                         serpent.tete.x--;
                         break;
                 }
-                affiche_serpent(&serpent);
-                msleep(ParamDefaut.difficulte);
+                affiche_serpent(&serpent); /*actualise l'affichage du serpent et permet son decplacement*/
+                msleep(ParamDefaut.difficulte); /*modelise la vitesse du jeu*/
             }
         }
+        /*Affiche le ficher texte contenant les scores*/
         else if (strcmp(choix,"scores")==0 || strcmp(choix,"Scores")==0)
         {
             lecture_scores(fichier_scores);
         }
+        /*quitte le jeu*/
         else if (strcmp(choix,"quitter")==0 || strcmp(choix,"quitter")==0)
         {
             break;
         }
+        /*affiche un message d'erreur si le mot saisit n'est pas valable*/
         else
         {
             printf("Erreur de saisie, veuillez reessayer\n");
