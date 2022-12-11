@@ -35,6 +35,8 @@ void affiche_serpent(ST_SNAKE *serpent, ST_POMME pomme)
     if (pomme.pos.x==serpent->tete.x && pomme.pos.y==serpent->tete.y)
     {
         /*gere l'affichage du serpent dans le cas particulier ou celui ci mange une pomme*/
+        gotoxy(serpent->pos[i-1].x,serpent->pos[i-1].y);
+        printf(" "); /*efface le dernier element de la queue du serpent*/
         for (i=serpent->taille-1; i>0 ; i--)
         {
             serpent->pos[i]=serpent->pos[i-1];

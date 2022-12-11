@@ -135,7 +135,7 @@ int main()
                         serpent.tete.x--;
                         break;
                 }
-                affiche_serpent(&serpent); /*actualise l'affichage du serpent et permet son decplacement*/
+                affiche_serpent(&serpent, pomme); /*actualise l'affichage du serpent et permet son decplacement*/
                 msleep(ParamDefaut.difficulte); /*modelise la vitesse du jeu*/
             }
         }
