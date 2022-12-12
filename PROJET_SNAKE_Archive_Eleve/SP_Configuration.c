@@ -4,9 +4,7 @@
 #include "MesTypes.h"
 
 
-
 /*SP de lecture du fichier score*/
-
 void lecture_scores ()
 {
     FILE *tableau_des_scores;
@@ -15,15 +13,16 @@ void lecture_scores ()
     if (tableau_des_scores != NULL)
     {
         while (fgets(chaine,60,tableau_des_scores) != NULL)  /* on lit le fichier
-tant qu'on ne re�oit pas d'erreur (NULL)*/  /* On lit au max Taille_max caract�res
+tant qu'on ne recoit pas d'erreur (NULL)*/  /* On lit au max Taille_max caracteres
 du fichier, on stocke le tout dans "chaine" */
         {
             printf("%s", chaine); /* on affiche la chaine */
         }
-
         fclose(tableau_des_scores);
     }
 }
+
+
 
 /* INITIALISATION DU JEU */
 void Initialisation_jeu (ST_PARAM_JEU Param_jeu, ST_SNAKE *serpent, ST_POMME *pomme)
@@ -99,7 +98,7 @@ void menu_options(ST_PARAM_JEU *Param)
                     scanf("%d", &Param->couleur_snake);
                     break;
                 case 3:
-                    printf("\n modifiez le niveau de difficulté: facile : 200\n intermediaire: 100\n dificile: 50\n");
+                    printf("\n modifiez le niveau de difficulté:\n 1.facile\n 2.intermediaire\n 3.dificile\n");
                     scanf("%d", &Param->difficulte);
                     break;
                 case 4 :
@@ -168,7 +167,7 @@ void SP_menuppl()
 /*renvoie la traduction de la difficulte en un temps de pause en ms*/
 int difficulte (ST_PARAM_JEU Param)
 {
-    int tps = 0 ;
+    int tps=0 ;
     switch (Param.difficulte)
     {
     case 1 :
@@ -184,7 +183,6 @@ int difficulte (ST_PARAM_JEU Param)
         break;
     default :
         break;
-
     }
     return tps;
 }
@@ -234,16 +232,15 @@ void param_joueur(ST_JOUEUR *jeu)
 void game_over(ST_JOUEUR *joueur)
 {
     /*affiche une page de fin de jeu ainsi que le score de la partie*/
-
     setBackgroundColor(BLACK),
     cls();
     setColor(WHITE);
     gotoxy(20,5);
-    printf("************************************************************************************\n");
-    gotoxy(53,6);
+    printf("*************************************************************************************\n");
+    gotoxy(50,6);
     printf("GAME OVER\n");
     gotoxy(20,7);
-    printf("************************************************************************************\n");
+    printf("*************************************************************************************\n");
     gotoxy(50,9);
     printf ("score : %d",joueur->score);
     joueur->score=0;
@@ -258,9 +255,9 @@ void game_over(ST_JOUEUR *joueur)
 void ecriture_score(ST_JOUEUR *joueur)
 {
     /*ouvre le fichier texte contenant les scores et ecrit un nouveau score et le nom du joueur correspondant*/
-    FILE *tableau_des_scores ;
-    tableau_des_scores= fopen ( "fichier_scores.txt" , "a");
-    fprintf( tableau_des_scores,"%s    %i\n",joueur->nom,joueur->score);
+    FILE *tableau_des_scores;
+    tableau_des_scores=fopen("fichier_scores.txt" , "wt");
+    fprintf(tableau_des_scores,"%s\t %i\n",joueur->nom,joueur->score);
     fclose(tableau_des_scores);
 }
 

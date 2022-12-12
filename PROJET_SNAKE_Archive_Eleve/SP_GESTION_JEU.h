@@ -1,8 +1,6 @@
 #ifndef SP_JEU_H_INCLUDED
 #define SP_JEU_H_INCLUDED
 #include "MesTypes.h"
-#include "SP_Configuration.h"
-#include "SP_GESTION_JEU.h"
 
 int SP_Gestion_Clavier();
 

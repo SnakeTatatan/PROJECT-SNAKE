@@ -1,4 +1,1 @@
-Pseudo / Score
-
-ethan    1
-flo    0
+Table des scores

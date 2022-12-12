@@ -17,19 +17,18 @@ int main()
     ParamDefaut.couleur_stade=YELLOW;
     ParamDefaut.H_stade=25;
     ParamDefaut.L_stade=100;
-    ParamDefaut.difficulte=100;
+    ParamDefaut.difficulte=2;
+    int m=difficulte(ParamDefaut);
     char choix[10];
     int i=1;
     param_joueur(&joueur);
-    cls();
-    SP_Titre();
-    SP_menuppl();
-
     /*le programme est actif tant que le joueur ne selectionne pas "quitter"*/
     while (strcmp(choix,"quitter"))
     {
-
         /* Affichage du menu principal*/
+        cls();
+        SP_Titre();
+        SP_menuppl();
         setBackgroundColor(BLACK);
         scanf("%s",choix);
         /* choix des actions à faire pour le joueur*/
@@ -61,7 +60,6 @@ int main()
                 {
                     ecriture_score(&joueur);
                     game_over(&joueur);
-                    /*ecriture_score(fichier_scores);*/
                     break;
                 }
                 for(i==1; i==serpent.taille; i++) /* cas ou le serpent mange sa queue*/
@@ -69,9 +67,7 @@ int main()
                     if(serpent.tete.x==serpent.pos[i].x && serpent.tete.y==serpent.pos[i].y)
                     {
                         ecriture_score(&joueur);
-                        game_over(joueur.score);
-                        /*ecriture_score(fichier_scores);*/
-                        joueur.score=0;
+                        game_over(&joueur);
                         break;
                     }
                 }
@@ -137,7 +133,7 @@ int main()
                         break;
                 }
                 affiche_serpent(&serpent, pomme); /*actualise l'affichage du serpent et permet son decplacement*/
-                msleep(ParamDefaut.difficulte); /*modelise la vitesse du jeu*/
+                msleep(m); /*modelise la vitesse du jeu*/
             }
         }
         /*Affiche le ficher texte contenant les scores*/
