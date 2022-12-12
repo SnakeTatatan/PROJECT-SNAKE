@@ -1,0 +1,4 @@
+Pseudo / Score
+
+ethan    1
+flo    0

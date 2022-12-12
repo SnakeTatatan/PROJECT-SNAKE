@@ -3,22 +3,27 @@
 #include "SP_GESTION_JEU.h"
 #include "MesTypes.h"
 
-/* Codage tableau des scores */
-#define TAILLE_MAX 1000  /*tableau de taille 1000 */
+
 
 /*SP de lecture du fichier score*/
-void lecture_scores (FILE *scores)
+
+void lecture_scores ()
 {
-    scores=fopen("scores.txt","rt"); /*ouvre le fichier en mode lecture*/
-    char c;
-    while((c=fgetc(scores))!=EOF)
+    FILE *tableau_des_scores;
+    char chaine [60];
+    tableau_des_scores = fopen ("fichier_scores.txt","rt");
+    if (tableau_des_scores != NULL)
     {
-        printf("%c",c); /*affiche le contenu du fichier*/
+        while (fgets(chaine,60,tableau_des_scores) != NULL)  /* on lit le fichier
+tant qu'on ne re�oit pas d'erreur (NULL)*/  /* On lit au max Taille_max caract�res
+du fichier, on stocke le tout dans "chaine" */
+        {
+            printf("%s", chaine); /* on affiche la chaine */
+        }
+
+        fclose(tableau_des_scores);
     }
-    fclose(scores); /*ferme le fichier*/
 }
-
-
 
 /* INITIALISATION DU JEU */
 void Initialisation_jeu (ST_PARAM_JEU Param_jeu, ST_SNAKE *serpent, ST_POMME *pomme)
@@ -213,43 +218,49 @@ void avancer_tete(ST_SNAKE serpent)  /*fais avancer la tete du serpent d'une cas
 }
 
 /* Parametre joueur */
-void param_joueur(ST_JOUEUR jeu)
+void param_joueur(ST_JOUEUR *jeu)
 {
     /*demande et enregistre le nom du joueur en debut de partie*/
      cls();
      SP_Titre();
      setColor(YELLOW);
      printf(" \n \n Votre pseudo :");
-     scanf("%c",&jeu.nom);
+     scanf("%s",&jeu->nom);
      cls();
+     msleep(100);
 }
 
 /*sp fin de jeu*/
-void game_over(int score)
+void game_over(ST_JOUEUR *joueur)
 {
     /*affiche une page de fin de jeu ainsi que le score de la partie*/
+
     setBackgroundColor(BLACK),
     cls();
     setColor(WHITE);
     gotoxy(20,5);
-    printf("*************************************************************************************\n");
-    gotoxy(50,6);
+    printf("************************************************************************************\n");
+    gotoxy(53,6);
     printf("GAME OVER\n");
     gotoxy(20,7);
-    printf("*************************************************************************************\n");
+    printf("************************************************************************************\n");
     gotoxy(50,9);
-    printf ("score : %d", score);
+    printf ("score : %d",joueur->score);
+    joueur->score=0;
     hidecursor();
     msleep(3000);
+    cls();
+    SP_Titre();
+    SP_menuppl();
 }
 
 /* SP enregistre scores*/
-void ecriture_score(FILE *f, ST_JOUEUR joueur, int score)
+void ecriture_score(ST_JOUEUR *joueur)
 {
     /*ouvre le fichier texte contenant les scores et ecrit un nouveau score et le nom du joueur correspondant*/
-    f=fopen("scores.txt"," wt ");
-    fprintf(f,"Nom\t Score\n\n") ;
-    fprintf(f,"%s %i\n",joueur.nom, score);
-    fclose(f);
+    FILE *tableau_des_scores ;
+    tableau_des_scores= fopen ( "fichier_scores.txt" , "a");
+    fprintf( tableau_des_scores,"%s    %i\n",joueur->nom,joueur->score);
+    fclose(tableau_des_scores);
 }
 

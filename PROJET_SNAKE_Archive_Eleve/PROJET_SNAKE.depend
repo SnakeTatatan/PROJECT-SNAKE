@@ -348,3 +348,47 @@
 	"MesTypes.h"
 	"SP_Configuration.h"
 
+1670870424 source:c:\users\33602\desktop\n7\cours 1a\s5\architecture et programmation\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\main.c
+	<stdio.h>
+	<stdlib.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+	"MesTypes.h"
+	"SP_Configuration.h"
+
+1670845541 c:\users\33602\desktop\n7\cours 1a\s5\architecture et programmation\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\mylib.h
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1670845540 c:\users\33602\desktop\n7\cours 1a\s5\architecture et programmation\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\sp_gestion_jeu.h
+	"MesTypes.h"
+	"SP_Configuration.h"
+	"SP_GESTION_JEU.h"
+
+1670845540 c:\users\33602\desktop\n7\cours 1a\s5\architecture et programmation\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\mestypes.h
+
+1670870445 c:\users\33602\desktop\n7\cours 1a\s5\architecture et programmation\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\sp_configuration.h
+
+1670845540 source:c:\users\33602\desktop\n7\cours 1a\s5\architecture et programmation\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\mylib.c
+	"myLib.h"
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	<conio.h>
+
+1670873937 source:c:\users\33602\desktop\n7\cours 1a\s5\architecture et programmation\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\sp_configuration.c
+	<stdio.h>
+	"myLib.h"
+	"SP_GESTION_JEU.h"
+	"MesTypes.h"
+
+1670845540 source:c:\users\33602\desktop\n7\cours 1a\s5\architecture et programmation\programmation en langage c\be snake\projet_snake_archive_eleve\projet_snake_archive_eleve\sp_gestion_jeu.c
+	<stdio.h>
+	<time.h>
+	"myLib.h"
+	"MesTypes.h"
+	"SP_Configuration.h"
+

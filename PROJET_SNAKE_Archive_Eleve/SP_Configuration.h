@@ -1,7 +1,7 @@
 #ifndef SP_CONFIGURATION_H_INCLUDED
 #define SP_CONFIGURATION_H_INCLUDED
 
-void lecture_scores (FILE *);
+void lecture_scores ();
 
 void Initialisation_jeu (ST_PARAM_JEU , ST_SNAKE *, ST_POMME *);
 
@@ -15,9 +15,9 @@ int difficulte (ST_PARAM_JEU);
 
 void avancer_tete(ST_SNAKE);
 
-void param_joueur(ST_JOUEUR);
+void param_joueur(ST_JOUEUR *);
 
-void game_over(int);
+void game_over(ST_JOUEUR *);
 
-void ecriture_score(FILE *,ST_JOUEUR,int);
+void ecriture_score(ST_JOUEUR *);
 #endif // SP_CONFIGURATION_H_INCLUDED
